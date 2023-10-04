@@ -29,4 +29,15 @@ public abstract class Game {
     }
 
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public void setDeveloper(String developer) {
+        this.developer = developer;
+    }
 }
