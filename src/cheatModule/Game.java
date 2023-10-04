@@ -10,6 +10,7 @@ public abstract class Game {
         this.title = title;
         this.genre = genre;
         this.developer = developer;
+
     }
 
     // Method to apply cheat codes
