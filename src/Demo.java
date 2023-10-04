@@ -4,7 +4,9 @@ import statusModule.CloudAccount;
 import statusModule.PlayerStatusUpdateCommand;
 import statusModule.RetrievePlayerStatusCommand;
 import statusModule.UpdatePlayerStatusCommand;
+import uxModule.ScoreProvider;
 import uxModule.Scoreboard;
+import uxModule.ScoringSystemAdapter;
 import uxModule.UserManager;
 
 import java.util.Scanner;
@@ -18,8 +20,6 @@ public class Demo {
         Game strategyGame ;
 
         UserManager userManager = new UserManager();
-        ScoringSystem scoringSystem = new ScoringSystem();
-        Scoreboard scoreboard = new Scoreboard(scoringSystem);
 
         Scanner scanner = new Scanner(System.in);
 
@@ -88,7 +88,27 @@ public class Demo {
                     break;
 
                 case 4:
+                    // Create an instance of ScoringSystem using Singleton pattern
+                    ScoringSystem scoringSystem = ScoringSystem.getInstance();
+
+                    // Calculate single-person scores
+                    scoringSystem.calculateSinglePersonScore("Player1", 100);
+                    scoringSystem.calculateSinglePersonScore("Player2", 80);
+
+                    // Calculate team-based scores
+                    int[] team1Scores = {100, 80, 90};
+                    scoringSystem.calculateTeamScore("TeamA", team1Scores);
+
+                    // Create a ScoringSystemAdapter to use with Scoreboard
+                    ScoreProvider scoreProvider = new ScoringSystemAdapter(scoringSystem);
+
+                    // Create a Scoreboard with the adapted ScoringSystem
+                    Scoreboard scoreboard = new Scoreboard(scoreProvider);
+
+                    // Show scores using the Scoreboard
+                    System.out.println("\n-----------------------------------\n");
                     scoreboard.showScores();
+                    System.out.println("\n-----------------------------------\n");
                     break;
                 case 5:
 

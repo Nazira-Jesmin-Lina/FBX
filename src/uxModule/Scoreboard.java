@@ -5,29 +5,17 @@ import scoringModule.ScoringSystem;
 import java.util.Map;
 
 public class Scoreboard {
-    private ScoringSystem scoringSystem;
+    private ScoreProvider scoreProvider;
 
-    public Scoreboard(ScoringSystem scoringSystem) {
-        this.scoringSystem = scoringSystem;
+    public Scoreboard(ScoreProvider scoreProvider) {
+        this.scoreProvider = scoreProvider;
     }
 
-    public void showScores() { //methods for showing scores
-        if (scoringSystem != null) {
-            Map<String, Integer> singlePersonScores = scoringSystem.getSinglePersonScores();
-            Map<String, Integer> teamScores = scoringSystem.getTeamScores();
+    public void showScores() {
+        Map<String, Integer> singlePersonScores = scoreProvider.getSinglePersonScores();
+        Map<String, Integer> teamScores = scoreProvider.getTeamScores();
 
-            System.out.println("Single Person Scores: " + singlePersonScores);
-            System.out.println("Team Scores: " + teamScores);
-        } else {
-            System.out.println("No scoring system available.");
-        }
-    }
-
-    public ScoringSystem getScoringSystem() {
-        return scoringSystem;
-    }
-
-    public void setScoringSystem(ScoringSystem scoringSystem) {
-        this.scoringSystem = scoringSystem;
+        System.out.println("Single Person Scores: " + singlePersonScores);
+        System.out.println("Team Scores: " + teamScores);
     }
 }
