@@ -1,5 +1,9 @@
 import cheatModule.*;
 import scoringModule.ScoringSystem;
+import statusModule.CloudAccount;
+import statusModule.PlayerStatusUpdateCommand;
+import statusModule.RetrievePlayerStatusCommand;
+import statusModule.UpdatePlayerStatusCommand;
 import uxModule.Scoreboard;
 import uxModule.UserManager;
 
@@ -29,7 +33,9 @@ public class Demo {
             System.out.println("6. Action Game Demo");
             System.out.println("7. Racing Game Demo");
             System.out.println("8. Strategy Game Demo");
-            System.out.println("9. Exit");
+            System.out.println("9. Update Player Status");
+            System.out.println("10. Exit");
+
             System.out.print("Select an option: ");
 
             int choice = scanner.nextInt();
@@ -132,6 +138,16 @@ public class Demo {
                     strategyGame.applyCheatCode("resources");
                     break;
                 case 9:
+                    CloudAccount cloudAccount = new CloudAccount();
+
+                    // Create and execute update and retrieve player status commands
+                    PlayerStatusUpdateCommand updateCommand = new UpdatePlayerStatusCommand(cloudAccount, "Player123", "Online");
+                    PlayerStatusUpdateCommand retrieveCommand = new RetrievePlayerStatusCommand(cloudAccount, "Player123");
+
+                    cloudAccount.executeCommand(updateCommand);
+                    cloudAccount.executeCommand(retrieveCommand);
+                    break;
+                case 10:
                     System.out.println("Exiting the program.");
                     System.exit(0);
                     break;

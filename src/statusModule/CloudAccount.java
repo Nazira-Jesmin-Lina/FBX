@@ -6,13 +6,6 @@ import java.util.Map;
 public class CloudAccount {
     private Map<String, String> playerStatusMap = new HashMap<>();
 
-    public CloudAccount(Map<String, String> playerStatusMap) {
-        this.playerStatusMap = playerStatusMap;
-    }
-
-    public CloudAccount() {
-    }
-
     public void updatePlayerStatus(String playerId, String newStatus) {
         // Update the player's status in the cloud account
         playerStatusMap.put(playerId, newStatus);
@@ -24,12 +17,9 @@ public class CloudAccount {
         return playerStatusMap.get(playerId);
     }
 
-    public Map<String, String> getPlayerStatusMap() {
-        return playerStatusMap;
-    }
-
-    public void setPlayerStatusMap(Map<String, String> playerStatusMap) {
-        this.playerStatusMap = playerStatusMap;
+    // Command execution method
+    public void executeCommand(PlayerStatusUpdateCommand command) {
+        command.execute();
     }
 }
 
