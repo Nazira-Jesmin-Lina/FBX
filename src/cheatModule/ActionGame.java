@@ -1,7 +1,7 @@
 package cheatModule;
 
 // Action game implementation
-public class ActionGame extends Game {
+public class ActionGame extends Game implements GameFactory  {
     public ActionGame(String title, String developer) {
         super(title, "Action", developer);
     }
@@ -18,5 +18,10 @@ public class ActionGame extends Game {
         } else {
             System.out.println("Invalid cheat code for " + getTitle());
         }
+    }
+
+    @Override
+    public Game createGame(String title, String developer) {
+        return new ActionGame(title, developer);
     }
 }
